@@ -141,7 +141,7 @@ static void update_kunit_status(bool sync)
 static void update_kunit_status(bool sync) { }
 #endif
 
-static DEFINE_SPINLOCK(report_lock);
+static DEFINE_HARD_SPINLOCK(report_lock);
 
 static void start_report(unsigned long *flags, bool sync)
 {
