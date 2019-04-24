@@ -365,6 +365,8 @@ void check_tsc_sync_source(int cpu)
 		atomic_set(&test_runs, 1);
 	else
 		atomic_set(&test_runs, 3);
+
+	hard_cond_local_irq_disable();
 retry:
 	/*
 	 * Wait for the target to start or to skip the test:
@@ -445,6 +447,8 @@ void check_tsc_sync_target(void)
 	/* Also aborts if there is no TSC. */
 	if (unsynchronized_tsc())
 		return;
+
+	hard_cond_local_irq_disable();
 
 	/*
 	 * Store, verify and sanitize the TSC adjust register. If
